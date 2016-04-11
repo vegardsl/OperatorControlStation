@@ -4,13 +4,16 @@
 #include <QGraphicsView>
 #include <QDial>
 
+#include "displayselectordial.h"
+
 class DisplayControlWidget : public QGraphicsView
 {
+    Q_OBJECT
 public:
     DisplayControlWidget(QWidget *parent, int _side);
 
 private:
-    QDial *displayControlDial;
+    DisplaySelectorDial *displaySelectorDial;
 
     int side;
 
@@ -19,6 +22,9 @@ private:
 
 protected:
     void drawBackground(QPainter *painter, const QRectF &rect) Q_DECL_OVERRIDE;
+
+public slots:
+    void setValue();
 };
 
 #endif // DISPLAYCONTROLWIDGET_H

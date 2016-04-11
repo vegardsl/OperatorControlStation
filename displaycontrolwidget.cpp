@@ -22,10 +22,27 @@ DisplayControlWidget::DisplayControlWidget(QWidget *parent, int _side) : QGraphi
 
     scene->setBackgroundBrush(Qt::gray);
 
-    displayControlDial = new QDial;
+    displaySelectorDial = new DisplaySelectorDial(this);
+    displaySelectorDial->setAttribute(Qt::WA_TranslucentBackground, true);
+    scene->addWidget(displaySelectorDial);
+    displaySelectorDial->move(-50,-50);
+/*
+    displayControlDial->setMinimum(1);
+    if(side == LEFT)
+    {
+        displayControlDial->setMaximum(2);
+    }
+    else if(side == RIGHT)
+    {
+        displayControlDial->setMaximum(3);
+    }
+    displayControlDial->setNotchesVisible(true);
+*/
+    displaySelectorDial->setStyleSheet("background-color: #27272B; color: #FFFFFF;");
+    displaySelectorDial->setStyleSheet("qproperty-knobMargin: 5; qproperty-knobMargin: 5;");
 
-    scene->addWidget(displayControlDial);
-    displayControlDial->move(-50,-50);
+    //QObject::connect(&displayControlDial, &QDial::sliderReleased,
+    //                 this, &DisplayControlWidget::setValue);
 }
 
 void DisplayControlWidget::drawBackground(QPainter *painter, const QRectF &rect)
@@ -62,5 +79,11 @@ void DisplayControlWidget::drawBackground(QPainter *painter, const QRectF &rect)
 
         painter->drawText(statusTextRect, statusLabel);
     }
+}
+
+void DisplayControlWidget::setValue()
+{
+    QPoint pos = displaySelectorDial->pos();
+    qDebug() << pos.x() << pos.y();
 }
 

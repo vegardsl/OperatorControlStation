@@ -22,7 +22,7 @@ ControlNode::ControlNode(ControlWidget *controlWidget) : control(controlWidget)
     dPos.setX(0); dPos.setY(0);
 }
 
-void ControlNode::calculateForces()
+void ControlNode::updateNodePosition()
 {
     // Test if the user is moving the controlNode.
     if (!scene() || scene()->mouseGrabberItem() == this) {
@@ -37,6 +37,7 @@ void ControlNode::calculateForces()
     qreal Fx = 0;
     qreal Fy = 0;
 
+    // System coefficients that gives desireable charateristics.
     qreal k = 0.8, c = 0.4, m = 0.5, dt = 0.04;
 
     xvel = dPos.x()*dt;
@@ -45,12 +46,15 @@ void ControlNode::calculateForces()
     Fx = (-1)*pos().x()*k - c*(dPos.x()/dt);
     Fy = (-1)*pos().y()*k - c*(dPos.y()/dt);
 
+    // Update velocity based on acceleration applied during dt.
     xvel += (Fx/m)*dt;
     yvel += (Fy/m)*dt;
 
+    // If forces are negligable, set velocity to zero.
     if (qAbs(Fx) < 0.1 && qAbs(Fy) < 0.1)
         xvel = yvel = 0;
 
+    // Update new positions based on velocity applied during dt.
     QRectF sceneRect = scene()->sceneRect();
     oldPos = newPos;
     newPos = pos() + QPointF(xvel, yvel);

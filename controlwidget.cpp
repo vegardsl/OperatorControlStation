@@ -59,7 +59,7 @@ void ControlWidget::timerEvent(QTimerEvent *event)
 {
   Q_UNUSED(event);
 
-  controlNode->calculateForces();
+  controlNode->updateNodePosition();
 
   bool itemsMoved = false;
   if (controlNode->advance())

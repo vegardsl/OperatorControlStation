@@ -7,6 +7,8 @@
 
 #include <QDebug>
 
+#define M_PI 3.14159265358979323846 /* pi */
+
 DisplaySelectorDial::DisplaySelectorDial(QWidget* parent,
                                           double knobRadius,
                                           double knobMargin)
@@ -82,4 +84,9 @@ void DisplaySelectorDial::paintEvent(QPaintEvent*)
 
     // Draw the ellipse
     painter.drawEllipse(QPointF(x,y),knobRadius_, knobRadius_);
+
+    qDebug() << "Painted";
 }
+
+
+//void QDial::sliderChange()

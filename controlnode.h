@@ -21,7 +21,7 @@ public:
     enum { Type = UserType + 1 };
     int type() const Q_DECL_OVERRIDE { return Type; }
 
-    void calculateForces();
+    void updateNodePosition();
     bool advance();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;

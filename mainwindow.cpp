@@ -39,9 +39,9 @@ MainWindow::MainWindow(QWidget *parent) :
     leftDisplayStack->addWidget(leftOffStatusDisplay);
     rightDisplayStack->addWidget(rightOffStatusDisplay);
 
-    ui->leftDisplayLayout->addWidget(leftDisplayControl);
+    //ui->leftDisplayLayout->addWidget(leftDisplayControl);
     ui->leftDisplayLayout->addWidget(leftDisplayStack);
-    ui->rightDisplayLayout->addWidget(rightDisplayControl);
+    //ui->rightDisplayLayout->addWidget(rightDisplayControl);
     ui->rightDisplayLayout->addWidget(rightDisplayStack);
 
     qDebug() << "Setting up signals and slots";

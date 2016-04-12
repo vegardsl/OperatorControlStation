@@ -13,6 +13,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = OperatorControlStation
 TEMPLATE = app
 
+CONFIG(release, release|debug){
+    LIBS += -L$OPENCV_BUILD$\x64\vc14\lib -lopencv_world310d
+}
+
+CONFIG(debug, release|debug){
+    LIBS += -L$OPENCV_BUILD$\x64\vc14\lib -lopencv_world310d
+}
+
+INCLUDEPATH += $OPENCV_BUILD$\include
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -24,7 +33,8 @@ SOURCES += main.cpp\
     videostreamwidget.cpp \
     offstatusdisplay.cpp \
     displayselectordial.cpp \
-    displaycontrolwidget.cpp
+    displaycontrolwidget.cpp \
+    videoudpclient.cpp
 
 HEADERS  += mainwindow.h \
     controlwidget.h \
@@ -35,6 +45,7 @@ HEADERS  += mainwindow.h \
     videostreamwidget.h \
     offstatusdisplay.h \
     displayselectordial.h \
-    displaycontrolwidget.h
+    displaycontrolwidget.h \
+    videoudpclient.h
 
 FORMS    += mainwindow.ui

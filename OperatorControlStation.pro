@@ -13,15 +13,17 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = OperatorControlStation
 TEMPLATE = app
 
+OPENCV_BUILD = $$(OPENCV_BUILD)
+
 CONFIG(release, release|debug){
-    LIBS += -L$OPENCV_BUILD$\x64\vc14\lib -lopencv_world310d
+    LIBS += -L$$OPENCV_BUILD\x64\vc14\lib -lopencv_world310d
 }
 
 CONFIG(debug, release|debug){
-    LIBS += -L$OPENCV_BUILD$\x64\vc14\lib -lopencv_world310d
+    LIBS += -L$$OPENCV_BUILD\x64\vc14\lib -lopencv_world310d
 }
 
-INCLUDEPATH += $OPENCV_BUILD$\include
+INCLUDEPATH += $$OPENCV_BUILD\include
 
 SOURCES += main.cpp\
         mainwindow.cpp \

@@ -49,7 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(controlWidget, SIGNAL(updateCommandTransmitter(qreal,qreal)),
             &tcpClientThread, SLOT(setCurrentCommand(qreal,qreal)));
 
-    tcpClientThread.startCommunication();
+    //tcpClientThread.startCommunication();
+    videoUdpClient.initSocket();
 
     qDebug() << "Setup complete";
 }

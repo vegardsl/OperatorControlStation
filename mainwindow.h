@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "tcpclientthread.h"
+#include "videoudpclient.h"
 
 #include <QMainWindow>
 
@@ -21,6 +22,7 @@ private:
     Ui::MainWindow *ui;
 
     TcpClientThread tcpClientThread;
+    VideoUdpClient videoUdpClient;
 
     const int LEFT = 0;
     const int RIGHT = 1;

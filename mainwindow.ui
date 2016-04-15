@@ -26,14 +26,7 @@
             <item>
              <widget class="QPushButton" name="pushButton_4">
               <property name="text">
-               <string>PushButton</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_5">
-              <property name="text">
-               <string>PushButton</string>
+               <string>CAMERA</string>
               </property>
              </widget>
             </item>
@@ -48,14 +41,14 @@
             <item row="0" column="0">
              <widget class="QPushButton" name="pushButton">
               <property name="text">
-               <string>PushButton</string>
+               <string>CONNECT</string>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
              <widget class="QPushButton" name="pushButton_2">
               <property name="text">
-               <string>PushButton</string>
+               <string>CONNECT</string>
               </property>
              </widget>
             </item>
@@ -71,27 +64,20 @@
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="rightDisplayLayout_2">
+         <layout class="QVBoxLayout" name="rightDisplayLayout">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QPushButton" name="pushButton_6">
               <property name="text">
-               <string>PushButton</string>
+               <string>MAP</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_8">
               <property name="text">
-               <string>PushButton</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_7">
-              <property name="text">
-               <string>PushButton</string>
+               <string>STATUS</string>
               </property>
              </widget>
             </item>

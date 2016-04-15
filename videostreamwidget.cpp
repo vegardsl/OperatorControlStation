@@ -8,3 +8,4 @@ VideoStreamWidget::VideoStreamWidget()
 {
 
 }
+

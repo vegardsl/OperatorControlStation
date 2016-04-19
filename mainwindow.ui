@@ -24,7 +24,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="cameraButton">
               <property name="text">
                <string>CAMERA</string>
               </property>

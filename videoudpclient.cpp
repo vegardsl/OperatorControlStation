@@ -1,6 +1,7 @@
 #include "videoudpclient.h"
 
-#include <opencv2/core.hpp>
+#include <opencv2\opencv.hpp>
+#include <opencv2\highgui.hpp>
 
 VideoUdpClient::VideoUdpClient(QObject *parent) : QThread(parent)
 {
@@ -57,16 +58,16 @@ void VideoUdpClient::initSocket()
 
     VideoUdpClient::readPendingDatagrams();
 }
-/*
+
 void VideoUdpClient::startReceiving()
 {
-    initSocket();
+    //initSocket();
     if (!isRunning()) {
         qDebug() << "Starting video thread.";
         start(LowPriority);
     }
 }
-*/
+
 void VideoUdpClient::readPendingDatagrams()
 {
 
@@ -104,7 +105,7 @@ void VideoUdpClient::readPendingDatagrams()
             }
     */
         udpSocket->readDatagram(datagram.data(), datagram.size(), &sender, &senderPort);
-         processDatagram(datagram);
+        processDatagram(datagram);
     }
     //QObject().thread()->usleep(3000);
 
@@ -112,5 +113,21 @@ void VideoUdpClient::readPendingDatagrams()
 
 void VideoUdpClient::run()
 {
-
+    cv::Mat image;
+    cv::VideoCapture cap;
+    cap.open("http://192.168.0.106:8080/stream?topic=/openni/rgb/image_raw");
+    cv::waitKey(1000);
+    if(!cap.isOpened())
+    {
+        qDebug() << "Failed to open video stream";
+        return;
+    }
+    qDebug() << "Stream opened.";
+    while(1)
+    {
+        cap.read(image);
+        cv::imshow("Image",image);
+        cv::waitKey(30);
+        qDebug() << "streaming...";
+    }
 }

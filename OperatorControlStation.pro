@@ -32,7 +32,6 @@ INCLUDEPATH += $$OPENCV_BUILD\include
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    controlwidget.cpp \
     controlnode.cpp \
     tcpclientthread.cpp \
     mapwidget.cpp \
@@ -42,10 +41,10 @@ SOURCES += main.cpp\
     displayselectordial.cpp \
     displaycontrolwidget.cpp \
     videoudpclient.cpp \
-    videostreamthread.cpp
+    videostreamthread.cpp \
+    robotcontrolwidget.cpp
 
 HEADERS  += mainwindow.h \
-    controlwidget.h \
     controlnode.h \
     tcpclientthread.h \
     mapwidget.h \
@@ -55,6 +54,7 @@ HEADERS  += mainwindow.h \
     displayselectordial.h \
     displaycontrolwidget.h \
     videoudpclient.h \
-    videostreamthread.h
+    videostreamthread.h \
+    robotcontrolwidget.h
 
 FORMS    += mainwindow.ui

@@ -1,5 +1,5 @@
 #include "controlnode.h"
-#include "controlwidget.h"
+#include "robotcontrolwidget.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-ControlNode::ControlNode(ControlWidget *controlWidget) : control(controlWidget)
+ControlNode::ControlNode(RobotControlWidget *robotControlWidget) : control(robotControlWidget)
 {
     QGraphicsItem::setFlag(ItemIsMovable);
     QGraphicsItem::setFlag(ItemSendsGeometryChanges);

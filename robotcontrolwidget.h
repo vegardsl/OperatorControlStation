@@ -5,11 +5,11 @@
 
 class ControlNode;
 
-class ControlWidget : public QGraphicsView
+class RobotControlWidget : public QGraphicsView
 {
     Q_OBJECT
 public:
-    ControlWidget(QWidget *parent = 0);
+    RobotControlWidget(QWidget *parent = 0);
 
     void itemMoved();
 

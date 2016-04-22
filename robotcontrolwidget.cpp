@@ -1,4 +1,4 @@
-#include "controlwidget.h"
+#include "robotcontrolwidget.h"
 #include "controlnode.h"
 
 #include <math.h>
@@ -7,7 +7,7 @@
 
 #include <QDebug>
 
-ControlWidget::ControlWidget(QWidget *parent) : QGraphicsView(parent), timerId(0)
+RobotControlWidget::RobotControlWidget(QWidget *parent) : QGraphicsView(parent), timerId(0)
 {
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -43,7 +43,7 @@ ControlWidget::ControlWidget(QWidget *parent) : QGraphicsView(parent), timerId(0
 
 }
 
-void ControlWidget::itemMoved()
+void RobotControlWidget::itemMoved()
 {
     if (!timerId)
         timerId = startTimer(1000 / 25);
@@ -55,7 +55,7 @@ void ControlWidget::itemMoved()
 
 
 
-void ControlWidget::timerEvent(QTimerEvent *event)
+void RobotControlWidget::timerEvent(QTimerEvent *event)
 {
   Q_UNUSED(event);
 
@@ -73,7 +73,7 @@ void ControlWidget::timerEvent(QTimerEvent *event)
   }
 }
 
-void ControlWidget::controlInputToCommandMessage()
+void RobotControlWidget::controlInputToCommandMessage()
 {
     QPointF pos = controlNode->pos();
     qDebug() << "XPos: " << pos.x() << " YPos: " << pos.y();

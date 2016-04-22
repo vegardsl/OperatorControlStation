@@ -7,7 +7,7 @@
 #include <QWidget>
 #include <QList>
 
-class ControlWidget;
+class RobotControlWidget;
 
 QT_BEGIN_NAMESPACE
 class QGraphicsSceneMouseEvent;
@@ -16,7 +16,7 @@ QT_END_NAMESPACE
 class ControlNode : public QGraphicsItem
 {
 public:
-    ControlNode(ControlWidget *controlWidget);
+    ControlNode(RobotControlWidget *robotControlWidget);
 
     enum { Type = UserType + 1 };
     int type() const Q_DECL_OVERRIDE { return Type; }
@@ -44,7 +44,7 @@ private:
 
     bool mousePressed;
 
-    ControlWidget *control;
+    RobotControlWidget *control;
 };
 
 #endif // CONTROLNODE_H

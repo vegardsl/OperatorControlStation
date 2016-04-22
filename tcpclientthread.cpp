@@ -27,7 +27,7 @@ void TcpClientThread::run()
 {
     socket = new QTcpSocket(this);
 
-    socket->connectToHost("192.168.0.107",2000);
+    socket->connectToHost("192.168.0.110",2000);
 
     if (socket->waitForConnected(3000))
     {

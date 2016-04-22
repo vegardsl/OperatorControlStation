@@ -29,7 +29,7 @@ void VideoStreamThread::run()
 {
     cv::Mat cvImage;
     cv::VideoCapture cap;
-    cap.open("http://192.168.0.108:8080/stream?topic=/openni/rgb/image_raw");
+    cap.open("http://192.168.0.110:8080/stream?topic=/openni/rgb/image_raw");
     cv::waitKey(1000);
     if(!cap.isOpened())
     {

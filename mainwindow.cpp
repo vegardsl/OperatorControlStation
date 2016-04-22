@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "controlwidget.h"
+#include "robotcontrolwidget.h"
 
 #include <QTime>
 
@@ -17,8 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
-    ControlWidget *controlWidget = new ControlWidget;
-    ui->centerDisplayLayout->addWidget(controlWidget);
+    RobotControlWidget *robotControlWidget = new RobotControlWidget;
+    ui->centerDisplayLayout->addWidget(robotControlWidget);
 
     //DisplayControlWidget *leftDisplayControl = new DisplayControlWidget(0,LEFT);
     //DisplayControlWidget *rightDisplayControl = new DisplayControlWidget(0,RIGHT);
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, &MainWindow::setLeftDisplay,
             leftLayoutStack,&QStackedLayout::setCurrentIndex);
 
-    connect(controlWidget, SIGNAL(updateCommandTransmitter(qreal,qreal)),
+    connect(robotControlWidget, SIGNAL(updateCommandTransmitter(qreal,qreal)),
             &tcpClientThread, SLOT(setCurrentCommand(qreal,qreal)));
 
     qRegisterMetaType< cv::Mat >("cv::Mat");
@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, &MainWindow::receiveImage);
 
     qDebug() << "Startin video streamer";
-    //tcpClientThread.startCommunication();
+    tcpClientThread.startCommunication();
     videoStreamThread.startReceiving();
 
     qDebug() << "Setup complete";

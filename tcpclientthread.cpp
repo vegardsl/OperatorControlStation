@@ -27,6 +27,10 @@ void TcpClientThread::run()
 {
     socket = new QTcpSocket(this);
 
+    /*
+     * Refer to address reservation list under "DHCP/Address Reservation"
+     * in the router settings at "192.168.0.1"
+     */
     socket->connectToHost("192.168.0.110",2000);
 
     if (socket->waitForConnected(3000))
@@ -65,30 +69,52 @@ void TcpClientThread::setCurrentCommand(qreal _linearCommand, qreal _angularComm
 
     message_word.clear();
     message_word.resize(10);
-    message_word[0] = 0x3a; // ":"
-    message_word[1] = 0x73; // "s"
 
-    if(linearCommand < 0)
+    int i = 0;
+    message_word[i] = 0x3a; // ":"
+    i++;
+    if(abs(linearCommand) > 0)
     {
-        message_word[2] = 0x2d; // "-"
+        message_word[i] = 0x73; // "s"
+        i++;
+        if(linearCommand < 0)
+        {
+            message_word[i] = 0x2d; // "-"
+        }
+        else
+        {
+            message_word[i] = 0x2b; // "+"
+        }
+        i++;
+        message_word[i] = abs(100*linearCommand);
+        i++;
     }
-    else
-    {
-        message_word[2] = 0x2b; // "+"
-    }
-    message_word[3] = abs(100*linearCommand);
 
-    message_word[4] = 0x61;
-    if(angularCommand < 0)
+    if(abs(angularCommand) > 0)
     {
-        message_word[5] = 0x2d; // "-"
+        message_word[i] = 0x61;
+        i++;
+        if(angularCommand < 0)
+        {
+            message_word[i] = 0x2d; // "-"
+        }
+        else
+        {
+            message_word[i] = 0x2b; // "+"
+        }
+        i++;
+        message_word[i] = abs(100*angularCommand);
+        i++;
+        //qDebug() << abs(100*angularCommand);
     }
-    else
+    message_word[i] = 0x1b;
+
+
+
+    for(int j = 0; j<i; j++)
     {
-        message_word[5] = 0x2b; // "+"
+        qDebug() << message_word[j];
     }
-    message_word[6] = abs(100*angularCommand);
-    //qDebug() << abs(100*angularCommand);
-    message_word[7] = 0x1b;
+
     mutex.unlock();
 }

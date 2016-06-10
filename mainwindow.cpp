@@ -20,34 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
     RobotControlWidget *robotControlWidget = new RobotControlWidget;
     ui->centerDisplayLayout->addWidget(robotControlWidget);
 
-    //DisplayControlWidget *leftDisplayControl = new DisplayControlWidget(0,LEFT);
-    //DisplayControlWidget *rightDisplayControl = new DisplayControlWidget(0,RIGHT);
-
-    //ui->horizontalPanelLayout->addWidget(leftDisplayControl);
-    //ui->horizontalPanelLayout->addWidget(rightDisplayControl);
-/*
-    *videoStreamWidget = new VideoStreamWidget;
-    *robotStatusWidget = new RobotStatusWidget;
-    *leftOffStatusDisplay = new OffStatusDisplay;
-    *rightOffStatusDisplay = new OffStatusDisplay;
-*/
-    //*leftDisplayStack = new QStackedWidget;
-    //*rightDisplayStack = new QStackedWidget;
-
     leftLayoutStack->addWidget(leftOffStatusDisplay);
     leftLayoutStack->addWidget(videoDisplay);
 
-    //leftDisplayStack->addWidget(leftOffStatusDisplay);
-    //leftDisplayStack->addWidget(videoStreamWidget);
-    //leftDisplayStack->addWidget(videoStreamWidget);
+
     rightDisplayStack->addWidget(rightOffStatusDisplay);
 
-    //ui->leftDisplayLayout->addWidget(leftDisplayControl);
-    //ui->leftDisplayLayout->addWidget(leftDisplayStack);
-    //ui->rightDisplayLayout->addWidget(rightDisplayControl);
     ui->rightDisplayLayout->addWidget(rightDisplayStack);
 
-    //leftStackedLayout->addWidget(leftOffStatusDisplay);
     ui->leftDisplayLayout->addLayout(leftLayoutStack);
 
     qDebug() << "Setting up signals and slots";
@@ -59,16 +39,12 @@ MainWindow::MainWindow(QWidget *parent) :
             &tcpClientThread, SLOT(setCurrentCommand(qreal,qreal)));
 
     qRegisterMetaType< cv::Mat >("cv::Mat");
-    //connect(&videoStreamThread, &VideoStreamThread::sendImage,
-     //       videoStreamWidget, &VideoStreamWidget::receiveImage);
-
     connect(&videoStreamThread, &VideoStreamThread::sendImage,
             this, &MainWindow::receiveImage);
 
     qDebug() << "Startin video streamer";
-    tcpClientThread.startCommunication();
     videoStreamThread.startReceiving();
-
+    tcpClientThread.startCommunication();
     qDebug() << "Setup complete";
 }
 

@@ -2,8 +2,6 @@
 #define VIDEOSTREAMWIDGET_H
 
 #include <QGraphicsView>
-//#include <QtCore>
-//#include <QImage>
 #include <QLabel>
 
 #include <opencv2/opencv.hpp>
@@ -17,10 +15,6 @@ public:
 
 private:
     QImage convertOpenCVMatToQtQImage(cv::Mat);
-    //QGraphicsPixmapItem videoDisplay;
-    //QGraphicsPixmapItem *videoDisplay;
-    //QPixmap videoDisplay;
-    //QGraphicsPixmapItem *videoPixmap;
     QLabel *videoDisplay = new QLabel(this);
 
 public slots:

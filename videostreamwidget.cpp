@@ -11,14 +11,7 @@ VideoStreamWidget::VideoStreamWidget(QWidget *parent) : QGraphicsView(parent)
     image->fill(Qt::red);
 
     videoDisplay->setPixmap(QPixmap::fromImage(*image));
-    //QGraphicsPixmapItem videoDisplay.setPixmap(QPixmap::fromImage(image));
 
-    //videoPixmap->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
-    //videoPixmap->setPixmap(QPixmap::fromImage(*image));
-    //videoDisplay = QPixmap::fromImage(image);
-
-    //QGraphicsPixmapItem videoDisplay;
-    //videoDisplay.setPixmap(QPixmap::fromImage(image));
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
@@ -31,9 +24,6 @@ VideoStreamWidget::VideoStreamWidget(QWidget *parent) : QGraphicsView(parent)
     setMinimumSize(640, 480);
     setMaximumSize(640, 480);
 
-    //videoPixmap->setPixmap(QPixmap::fromImage(image));
-    //videoPixmap->setZValue(2);
-
     QGraphicsEllipseItem* deadZoneIndicator = new QGraphicsEllipseItem(-20,-20,40,40);
     deadZoneIndicator->setBrush(Qt::green);
     deadZoneIndicator->setOpacity(0.3);
@@ -41,15 +31,12 @@ VideoStreamWidget::VideoStreamWidget(QWidget *parent) : QGraphicsView(parent)
 
     scene->addItem(deadZoneIndicator);
 
-    //scene->addItem(&videoDisplay);
-    //scene->addPixmap(QPixmap::fromImage(*image));
-    //scene->addPixmap(videoDisplay); // Does not crash
-    //scene->addItem(videoPixmap);
-    //scene->addItem(videoDisplay); // This cause a crash
-    //QGraphicsView view(scene);
-    //view.show();
 }
 
+/*
+ * Function is copied from:
+ * https://github.com/MicrocontrollersAndMore/OpenCV_3_Windows_10_Installation_Tutorial/blob/master/CannyStillWithQtGUI.cpp
+ */
 QImage VideoStreamWidget::convertOpenCVMatToQtQImage(cv::Mat mat) {
     if(mat.channels() == 1) {                   // if grayscale image
         return QImage((uchar*)mat.data, mat.cols, mat.rows, mat.step, QImage::Format_Indexed8);     // declare and return a QImage
@@ -65,8 +52,5 @@ QImage VideoStreamWidget::convertOpenCVMatToQtQImage(cv::Mat mat) {
 void VideoStreamWidget::receiveImage(cv::Mat cvImage)
 {
     QImage qImage = convertOpenCVMatToQtQImage(cvImage);
-    //videoDisplay = QPixmap::fromImage(qImage);
     qDebug() << "Image update";
-    //videoDisplay(QPixmap::fromImage(qImage));
-    //videoDisplay->setPixmap(QPixmap::fromImage(qImage));
 }

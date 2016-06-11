@@ -38,9 +38,6 @@ SOURCES += main.cpp\
     robotstatuswidget.cpp \
     videostreamwidget.cpp \
     offstatusdisplay.cpp \
-    displayselectordial.cpp \
-    displaycontrolwidget.cpp \
-    videoudpclient.cpp \
     videostreamthread.cpp \
     robotcontrolwidget.cpp
 
@@ -51,8 +48,6 @@ HEADERS  += mainwindow.h \
     robotstatuswidget.h \
     videostreamwidget.h \
     offstatusdisplay.h \
-    displayselectordial.h \
-    displaycontrolwidget.h \
     videoudpclient.h \
     videostreamthread.h \
     robotcontrolwidget.h

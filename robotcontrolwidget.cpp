@@ -54,7 +54,13 @@ void RobotControlWidget::itemMoved()
 }
 
 
-
+/**
+ * @brief RobotControlWidget::timerEvent
+ * @param event
+ *
+ * From void GraphWidget::timerEvent(QTimerEvent *event)
+ * in graphwidget.cpp from "elasticnodes" in examples of the Qt Toolkit.
+ */
 void RobotControlWidget::timerEvent(QTimerEvent *event)
 {
   Q_UNUSED(event);

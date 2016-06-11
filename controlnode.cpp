@@ -11,6 +11,7 @@
 
 ControlNode::ControlNode(RobotControlWidget *robotControlWidget) : control(robotControlWidget)
 {
+    //From "elasticnodes" in examples of the Qt Toolkit.
     QGraphicsItem::setFlag(ItemIsMovable);
     QGraphicsItem::setFlag(ItemSendsGeometryChanges);
     QGraphicsItem::setCacheMode(DeviceCoordinateCache);
@@ -22,6 +23,10 @@ ControlNode::ControlNode(RobotControlWidget *robotControlWidget) : control(robot
     dPos.setX(0); dPos.setY(0);
 }
 
+/**
+ * @brief ControlNode::updateNodePosition
+ * Adaptation of "void Node::calculateForces()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 void ControlNode::updateNodePosition()
 {
     // Test if the user is moving the controlNode.
@@ -62,7 +67,12 @@ void ControlNode::updateNodePosition()
     newPos.setY(qMin(qMax(newPos.y(), sceneRect.top() + 10), sceneRect.bottom() - 10));
     dPos = newPos - oldPos;
 }
-
+/**
+ * @brief ControlNode::advance
+ * @return
+ *
+ * From "void Node::advance()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 bool ControlNode::advance()
 {
     if (newPos == pos())
@@ -72,12 +82,24 @@ bool ControlNode::advance()
     return true;
 }
 
+/**
+ * @brief ControlNode::boundingRect
+ * @return
+ *
+ * From "void Node::boundingRect()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 QRectF ControlNode::boundingRect() const
 {
     qreal adjust = 2;
     return QRectF( -10 - adjust, -10 - adjust, 23 + adjust, 23 + adjust);
 }
 
+/**
+ * @brief ControlNode::shape
+ * @return
+ *
+ * From "void Node::shape()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 QPainterPath ControlNode::shape() const
 {
     QPainterPath path;
@@ -85,6 +107,13 @@ QPainterPath ControlNode::shape() const
     return path;
 }
 
+/**
+ * @brief ControlNode::paint
+ * @param painter
+ * @param option
+ *
+ * From "void Node::paint()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 void ControlNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
     painter->setPen(Qt::NoPen);
@@ -109,6 +138,14 @@ void ControlNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     qDebug() << "PAINTING";
 }
 
+/**
+ * @brief ControlNode::itemChange
+ * @param change
+ * @param value
+ * @return
+ *
+ * From "void Node::itemChange()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 QVariant ControlNode::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     //qDebug() << "CHANGING" << i++;
@@ -124,6 +161,12 @@ QVariant ControlNode::itemChange(GraphicsItemChange change, const QVariant &valu
     return QGraphicsItem::itemChange(change, value);
 }
 
+/**
+ * @brief ControlNode::mousePressEvent
+ * @param event
+ *
+ * From "void Node::mousePressEvent()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 void ControlNode::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
@@ -132,6 +175,12 @@ void ControlNode::mousePressEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mousePressEvent(event);
 }
 
+/**
+ * @brief ControlNode::mouseReleaseEvent
+ * @param event
+ *
+ * Adaptation of "void Node::mouseReleaseEvent()" found in "elasticnodes" in examples of the Qt Toolkit.
+ */
 void ControlNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
